@@ -230,37 +230,45 @@
         user-select: none;
       }
 
+      /* Main Equation Container */
       .math-eq {
         font-family: "Times New Roman", Times, serif;
         font-size: 1.35rem;
-        font-style: italic;
+        font-style: italic; /* Default: Variables are cursive */
         color: var(--text-primary);
         display: flex;
         align-items: center;
         white-space: nowrap;
-        font-weight: 400; /* Forces normal weight to fix "bold" look */
+        font-weight: 400;
       }
 
+      /* Roman/Upright (For Numbers 0-9 and Constants) */
       .math-eq .rm {
         font-style: normal;
-      }
-      .math-eq .bf {
-        font-weight: bold;
-        font-style: normal;
+        margin: 0 1px;
       }
 
-      /* Superscript adjustments */
+      /* Bold Vectors */
+      .math-eq .bf {
+        font-weight: bold;
+        font-style: normal; /* Vectors are often upright bold in this context */
+      }
+
+      /* SUPERSCRIPT FIX: Raises the power higher */
       .math-eq sup {
+        font-style: normal; /* Numbers in powers should be straight */
         font-size: 0.6em;
+        vertical-align: super;
+        position: relative;
+        top: -0.25em; /* Lifts it up specifically */
         margin-left: 1px;
       }
 
-      /* General Operators (+, =) */
+      /* Operators (+, =) are always straight */
       .math-eq .op {
         margin: 0 12px;
         font-style: normal;
         opacity: 0.9;
-        /* Slight vertical tweak to align with fractions */
         transform: translateY(-2px);
       }
 
@@ -493,9 +501,8 @@
                   <span class="den">&part;t</span>
                 </div>
                 <span class="op">+</span>
-                <!-- Fixed: Wrapped dot and added spacing -->
                 <span class="bf">v</span> <span class="op dot">&middot;</span>
-                <span class="nabla">&nabla;</span><span class="bf">v</span>
+                <span class="nabla rm">&nabla;</span><span class="bf">v</span>
               </div>
               <div class="brace-container">
                 <div class="brace-line"></div>
@@ -508,11 +515,14 @@
             <!-- Term: Fractal -->
             <div class="term-group">
               <div style="display: flex; align-items: center">
-                <!-- Fixed: Changed "D" to italic (standard math var) to fix weight inconsistency -->
-                2 <i>D</i><sup>2</sup> &Delta;
+                <!-- Fixed: '2' is Upright (.rm), 'D' is Italic (default), 'sup 2' is Upright (.rm) -->
+                <span class="rm">2</span>D<sup class="rm">2</sup>
+                <span class="rm">&Delta;</span>
                 <span class="parens">(</span>
                 <div class="frac">
-                  <span class="num">&nabla;&radic;P</span>
+                  <span class="num"
+                    ><span class="rm">&nabla;</span>&radic;P</span
+                  >
                   <span class="den">&radic;P</span>
                 </div>
                 <span class="parens">)</span>
