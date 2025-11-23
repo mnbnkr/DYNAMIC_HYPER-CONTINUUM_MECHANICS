@@ -5,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="The Holostrome: Physics Beyond the Planck Limit - A DHCM Framework."
+      content="Dynamic Hyper-Continuum Mechanics: The Geometry of the Infinite."
     />
-    <title>The Holostrome: DHCM</title>
+    <title>DHCM: The Geometry of the Infinite</title>
     <style>
       /* =========================================
            1. THEME CONFIGURATION
            ========================================= */
       :root {
-        /* --- Light Mode (Neutral & Warm) --- */
-        --bg-color: #fdfdfc; /* Warm Paper White (No Blue) */
-        --surface-color: #ffffff; /* Pure White */
-        --text-primary: #1a1a1a; /* Neutral Black */
-        --text-secondary: #555555; /* Neutral Gray */
-        --accent-color: #c9302c; /* Academic Red */
-        --border-color: #e5e5e5;
-        --code-bg: #f5f5f5;
+        /* --- Light Mode (Neutral & Warm - Dimmed) --- */
+        /* Slightly deeper stone color to reduce glare */
+        --bg-color: #f2f2f0;
+        --surface-color: #ffffff;
+        --text-primary: #1a1a1a;
+        --text-secondary: #555555;
+        --accent-color: #c9302c;
+        --border-color: #dcdcdc;
+        --code-bg: #f4f4f4;
         --brace-color: #666666;
 
         /* Shadows */
-        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        --math-border: 1px solid #e5e5e5;
+        --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --math-border: 1px solid #e0e0e0;
 
         /* Layout & Type */
         --reading-width: 760px;
@@ -36,13 +37,12 @@
       @media (prefers-color-scheme: dark) {
         :root {
           /* --- Dark Mode (Neutral Matte) --- */
-          /* Strictly neutral grays. No blue tint. */
-          --bg-color: #161616; /* Smooth Dark Charcoal */
-          --surface-color: #1f1f1f; /* Slightly lighter card background */
+          --bg-color: #161616;
+          --surface-color: #1f1f1f;
 
           --text-primary: #e6e6e6;
           --text-secondary: #a3a3a3;
-          --accent-color: #7dd3fc; /* Science Cyan (Accents only) */
+          --accent-color: #7dd3fc;
           --border-color: #333333;
           --code-bg: #1f1f1f;
           --brace-color: #888888;
@@ -71,7 +71,7 @@
         background-color: var(--bg-color);
         color: var(--text-secondary);
         font-family: var(--font-body);
-        font-size: 19px; /* Slightly improved readability */
+        font-size: 19px;
         line-height: 1.75;
         transition:
           background-color 0.3s ease,
@@ -160,13 +160,13 @@
       }
 
       h1 {
-        font-size: clamp(2.4rem, 5vw, 3.2rem);
-        margin-bottom: 24px;
+        font-size: clamp(2.2rem, 5vw, 3rem);
+        margin-bottom: 16px;
         letter-spacing: -0.02em;
       }
 
       .subtitle {
-        font-size: 1.25rem;
+        font-size: 1.2rem;
         line-height: 1.6;
         color: var(--text-secondary);
         margin-bottom: 50px;
@@ -188,6 +188,7 @@
         font-size: 1.35rem;
         margin-top: 40px;
         margin-bottom: 16px;
+        color: var(--text-primary);
       }
 
       p {
@@ -215,13 +216,13 @@
       }
 
       /* =========================================
-                 5. MATH RENDERING (Fixed Spacing & Weight)
+                 5. MATH RENDERING
                  ========================================= */
       .math-block {
         background: var(--code-bg);
         border: var(--math-border);
         border-radius: 8px;
-        padding: 40px 10px; /* Reduced side padding to prevent cut-off */
+        padding: 40px 10px;
         margin: 40px 0;
         display: flex;
         justify-content: center;
@@ -234,15 +235,16 @@
       .math-eq {
         font-family: "Times New Roman", Times, serif;
         font-size: 1.35rem;
-        font-style: italic; /* Default: Variables are cursive */
+        font-style: italic; /* Variables are cursive by default */
         color: var(--text-primary);
-        display: flex;
+        display: inline-flex;
         align-items: center;
         white-space: nowrap;
         font-weight: 400;
+        vertical-align: -3px; /* Better alignment with body text */
       }
 
-      /* Roman/Upright (For Numbers 0-9 and Constants) */
+      /* Roman/Upright (For Numbers 0-9 and Constants like 'd') */
       .math-eq .rm {
         font-style: normal;
         margin: 0 1px;
@@ -251,37 +253,24 @@
       /* Bold Vectors */
       .math-eq .bf {
         font-weight: bold;
-        font-style: normal; /* Vectors are often upright bold in this context */
       }
 
-      /* SUPERSCRIPT FIX: Raises the power higher */
+      /* Superscript - Adjusted for tighter spacing */
       .math-eq sup {
-        font-style: normal; /* Numbers in powers should be straight */
-        font-size: 0.6em;
+        font-style: normal;
+        font-size: 0.75em; /* Slightly larger than before for readability */
         vertical-align: super;
         position: relative;
-        top: -0.25em; /* Lifts it up specifically */
+        top: -0.3em;
         margin-left: 1px;
       }
 
-      /* Operators (+, =) are always straight */
+      /* Operators (+, =) - Adjusted Spacing Here */
       .math-eq .op {
-        margin: 0 12px;
+        margin: 0 6px;
         font-style: normal;
         opacity: 0.9;
-        transform: translateY(-2px);
-      }
-
-      /* Specific Operator: Multiplication Dot */
-      .math-eq .op.dot {
-        margin: 0 6px; /* Tighter spacing for dot */
-        font-size: 0.8em;
-        font-weight: bold;
-      }
-
-      /* Specific Operator: Nabla (Del) needs space after it */
-      .math-eq .nabla {
-        margin-right: 4px;
+        transform: translateY(-1px);
       }
 
       /* Fraction Engine */
@@ -290,69 +279,20 @@
         flex-direction: column;
         align-items: center;
         vertical-align: middle;
-        margin: 0 6px;
+        margin: 0 4px; /* Reduced margin */
       }
       .frac .num {
         border-bottom: 1px solid var(--text-primary);
         padding: 0 4px 1px;
         text-align: center;
         display: block;
-        font-size: 0.95em;
+        font-size: 0.9em;
       }
       .frac .den {
         padding: 2px 4px 0;
         text-align: center;
         display: block;
-        font-size: 0.95em;
-      }
-
-      .parens {
-        font-size: 2.3em;
-        font-weight: 300;
-        line-height: 0.8;
-        vertical-align: middle;
-        color: var(--text-secondary);
-        margin: 0 4px;
-        transform: translateY(-3px);
-      }
-
-      /* Brace Labels */
-      .term-group {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .brace-container {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
-      }
-      .brace-line {
-        width: 100%;
-        height: 6px;
-        border-top: 1px solid var(--brace-color);
-        position: relative;
-      }
-      .brace-line::after {
-        content: "";
-        position: absolute;
-        top: -1px;
-        left: 50%;
-        width: 1px;
-        height: 4px;
-        background: var(--brace-color);
-        transform: translateX(-50%);
-      }
-      .brace-label {
-        font-family: var(--font-body);
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        font-weight: 600;
-        color: var(--accent-color);
-        margin-top: 5px;
+        font-size: 0.9em;
       }
 
       footer {
@@ -377,219 +317,179 @@
     <main>
       <!-- Header -->
       <section class="visible">
-        <h1>The Holostrome:<br />Physics Beyond the Planck Limit</h1>
+        <h1>Dynamic Hyper-Continuum Mechanics</h1>
+        <h3>The Geometry of the Infinite</h3>
         <div class="subtitle">
-          Contemporary physics has backed itself into a corner. By assuming that
-          reality must eventually "bottom out" at a discrete pixel—the Planck
-          length—standard theories crash into singularities. DHCM takes the
-          inverse approach.
+          Modern physics is currently stuck in a deadlock. On one side, we have
+          General Relativity, which describes a smooth, curving spacetime. On
+          the other, Quantum Mechanics, which describes a jagged, pixelated
+          world of discrete packets. When physicists try to combine them, the
+          math explodes—specifically, the equations yield "infinities" that make
+          no physical sense. To stop this, the standard solution has been to
+          impose a "cutoff," a theoretical pixel size called the Planck length,
+          below which physics presumably stops. String theory attempts to hide
+          these infinities in extra dimensions.
         </div>
-      </section>
-
-      <!-- 1. The Substrate -->
-      <section>
-        <h2>1. The Substrate: A Hyperreal Ontology</h2>
         <p>
-          The fundamental territory of the universe is the
-          <strong>Holostrome</strong> (Whole-Flow). This is not the empty,
-          static vacuum of Newtonian physics, nor the pixelated lattice of Loop
-          Quantum Gravity. It is an infinite, stochastic fluid.
+          <strong>Dynamic Hyper-Continuum Mechanics (DHCM)</strong> proposes a
+          radical alternative: What if the infinities aren't a bug, but the
+          fundamental feature? What if reality has no "bottom," no pixelation,
+          and no Planck scale limit?
         </p>
         <p>
-          To map this territory, we must abandon standard Real numbers (<span
+          This framework posits that the universe is a
+          <strong>Holostrome</strong> (from the Greek <em>holos</em>, whole, and
+          <em>stroma</em>, layer or bed)—an infinite, non-causal, stochastic
+          continuum. By utilizing the mathematics of the Hyperreal number
+          system, we can describe a universe that is strictly continuous, where
+          "computation" is not a linear processing of bits, but a geometric
+          interaction between infinite potential and finite motion.
+        </p>
+      </section>
+
+      <!-- 1. Ontology -->
+      <section>
+        <h2>The Ontology of the Holostrome</h2>
+        <p>
+          In standard physics, space is modeled using Real Numbers (<span
             class="math-eq"
-            style="display: inline; font-size: 1em"
-            ><span class="rm">ℝ</span></span
-          >), which force us to treat points as zero-dimensional singularities.
-          Instead, DHCM is built upon the
+            ><span class="bf rm">R</span></span
+          >). The problem with Real Numbers is that when you divide by a
+          distance of zero (a singularity), the value explodes.
+        </p>
+        <p>
+          DHCM instead maps the universe onto the
           <strong
-            >Hyperreal Number System (<span
-              class="math-eq"
-              style="display: inline; font-size: 1em"
-              ><span class="rm">*ℝ</span></span
+            >Hyperreal Number System (<span class="math-eq"
+              ><sup class="rm">*</sup><span class="bf rm">R</span></span
             >)</strong
-          >
-          and <strong>Smooth Infinitesimal Analysis</strong>.
+          >, within the logic of <strong>Smooth Infinitesimal Analysis</strong>.
+          In this framework, we accept the existence of
+          <em>infinitesimals</em> (<span class="math-eq"
+            ><span class="rm">&Delta;</span></span
+          >)—quantities that are not zero, yet are so small that their square is
+          zero (<span class="math-eq"
+            ><span class="rm">&Delta;</span><sup class="rm">2</sup
+            ><span class="op">=</span><span class="rm">0</span></span
+          >).
         </p>
 
         <div class="card">
           <p>
-            In this framework, we work with <em>infinitesimals</em> (<span
-              class="math-eq"
-              style="display: inline; font-size: 1em"
-              >&Delta;</span
-            >)—quantities that are distinct from zero but possess such a minute
-            magnitude that their square is zero:
-          </p>
-          <div
-            style="
-              text-align: center;
-              font-family: &quot;Times New Roman&quot;, serif;
-              font-size: 1.4rem;
-              font-style: italic;
-              margin: 16px 0;
-            "
-          >
-            &Delta;<sup>2</sup> = 0
-          </div>
-          <p style="margin-bottom: 0">
-            The "singularities" of black holes or the Big Bang are simply
-            mathematical artifacts of trying to use low-resolution numbers to
-            describe a high-resolution universe.
+            This mathematical shift is profound. It implies that if you zoom in
+            on any point in space, you never hit a "hard floor" or a vacuum. You
+            encounter a <strong>Fractal Structure</strong> that goes down
+            forever. The "exploding energy" that plagues standard quantum
+            gravity doesn't destroy the universe; it simply diffuses into this
+            infinite micro-structure. The universe is a
+            <strong>Superfluid of Stochastic Flux</strong>, a medium of pure
+            noise (a Wiener Process) that is infinite in both extent and
+            resolution.
           </p>
         </div>
       </section>
 
-      <!-- 2. The Dynamics -->
+      <!-- 2. The Engine -->
       <section>
-        <h2>2. The Dynamics: Dyadic Computation</h2>
+        <h2>The Engine of Reality: Dyadic Computation</h2>
         <p>
-          If the foundation of reality is a "Stochastic Flux" (pure, random
-          noise), how does stable order emerge? Reality computes the future
-          through a <strong>Dyadic Synthesis</strong>. Time is not a unitary
-          arrow; it is the friction between two opposing aspects of the
-          Holostrome:
+          If the foundation of reality is pure, chaotic noise, how do stable
+          laws of physics—like inertia or gravity—emerge? The answer lies in
+          <strong>Dyadic Computation</strong>.
         </p>
 
-        <ol>
-          <li>
-            <strong>The Non-Causal Potential:</strong> The deep structure.
-            Because the medium is continuous, every point is connected via the
-            dimension of <em>scale</em>. The field "feels" the entire geometry
-            of space instantaneously.
-          </li>
-          <li>
-            <strong>The Semi-Causal Trajectory:</strong> The surface structure.
-            This is the entropic drift, the "inertia" that pushes the present
-            moment forward.
-          </li>
-        </ol>
-
         <p>
-          This relationship is formalized in the core law of DHCM:
-          <strong>The Geodesic Equation of Fractal Spacetime.</strong>
+          The universe does not "compute" like a digital computer (State A
+          &rarr; State B). Instead, it computes through
+          <strong>Friction</strong>. Every moment of existence is the synthesis
+          of two inseparable aspects of the Holostrome:
         </p>
 
-        <!-- Equation 1 -->
+        <h3>1. The Non-Causal Potential (The Deep Structure)</h3>
+        <p>
+          Because the Holostrome is a continuum, every point is connected to
+          every other point instantaneously through the dimension of
+          <em>Scale</em>. The field "feels" the entire geometry of space at
+          once. This is the <strong>Fractal Potential</strong>. It acts as a
+          "guide rail." It is <strong>non-causal</strong> and
+          <strong>non-local</strong>, representing the infinite history and
+          future possibilities of the field simultaneously. It pushes the
+          chaotic noise into specific, resonant shapes.
+        </p>
+
+        <h3>2. The Semi-Causal Trajectory (The Surface Flow)</h3>
+        <p>
+          This is what we perceive as "Physics." It is the macroscopic
+          projection of the flux, governed by statistics and entropy. As the
+          infinite noise averages out over large scales, it creates the illusion
+          of linear time and cause-and-effect.
+        </p>
+
+        <p>
+          The "Master Equation" of the universe is not Newton’s
+          <span class="math-eq">F<span class="op">=</span>ma</span>, but a
+          <strong>Geodesic Equation of Fractal Spacetime</strong>:
+        </p>
+
+        <!-- Equation -->
         <div class="math-block">
           <div class="math-eq">
             <div class="frac">
-              <span class="num"
-                ><span class="bf">d&#770;</span><sup>2</sup>
-                <span class="bf">x</span></span
-              >
-              <span class="den">dt<sup>2</sup></span>
+              <span class="num">
+                <span class="rm">d&#770;</span><sup class="rm">2</sup>
+                <span class="bf">x</span>
+              </span>
+              <span class="den">
+                <span class="rm">d</span>t<sup class="rm">2</sup>
+              </span>
             </div>
-            <!-- Added 'static' class so this equals sign stays centered -->
-            <span class="op static">=</span> 0
+            <span class="op">=</span>
+            <span class="rm">0</span>
           </div>
         </div>
 
         <p>
-          This simple statement—"Total acceleration in fractal spacetime is
-          zero"—unpacks into the <strong>Dyadic Evolution Equation</strong>:
+          This equation dictates that the total acceleration in the fractal
+          dimension is zero. The particle is trying to move in a straight line,
+          but because the underlying space (The Holostrome) is boiling with
+          infinite fractal activity, the particle is buffeted into a specific
+          path. The "Classical Inertia" (the tendency to keep moving) is
+          constantly fighting against the "Fractal Potential" (the geometry of
+          the noise).
         </p>
-
-        <!-- Equation 2 -->
-        <div class="math-block">
-          <div class="math-eq">
-            <!-- Term: Inertia -->
-            <div class="term-group">
-              <div style="display: flex; align-items: center">
-                <div class="frac">
-                  <span class="num">&part;<span class="bf">v</span></span>
-                  <span class="den">&part;t</span>
-                </div>
-                <span class="op">+</span>
-                <span class="bf">v</span> <span class="op dot">&middot;</span>
-                <span class="nabla rm">&nabla;</span><span class="bf">v</span>
-              </div>
-              <div class="brace-container">
-                <div class="brace-line"></div>
-                <span class="brace-label">Classical Inertia</span>
-              </div>
-            </div>
-
-            <span class="op">=</span>
-
-            <!-- Term: Fractal -->
-            <div class="term-group">
-              <div style="display: flex; align-items: center">
-                <!-- Fixed: '2' is Upright (.rm), 'D' is Italic (default), 'sup 2' is Upright (.rm) -->
-                <span class="rm">2</span>D<sup class="rm">2</sup>
-                <span class="rm">&Delta;</span>
-                <span class="parens">(</span>
-                <div class="frac">
-                  <span class="num"
-                    ><span class="rm">&nabla;</span>&radic;P</span
-                  >
-                  <span class="den">&radic;P</span>
-                </div>
-                <span class="parens">)</span>
-              </div>
-              <div class="brace-container">
-                <div class="brace-line"></div>
-                <span class="brace-label">Fractal Potential</span>
-              </div>
-            </div>
-
-            <span class="op">+</span>
-
-            <!-- Term: Noise -->
-            <div class="term-group">
-              <div style="display: flex; align-items: center">&zeta;(t)</div>
-              <div class="brace-container">
-                <div class="brace-line"></div>
-                <span class="brace-label">Noise</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p>Here, we see the engine of the universe laid bare:</p>
-        <ul>
-          <li>
-            <strong>The Left Side (Semi-Causal):</strong> This is the classical
-            world. It describes the predictable flow of matter and energy,
-            governed by causality and thermodynamics.
-          </li>
-          <li>
-            <strong>The Right Side (Non-Causal):</strong> This is the fractal
-            geometry of space acting on the particle. The term
-            <span class="math-eq" style="display: inline; font-size: 1em"
-              >&nabla;&radic;P / &radic;P</span
-            >
-            acts as a guide rail, forcing the chaotic noise (&zeta;) into stable
-            structures.
-          </li>
-        </ul>
       </section>
 
       <!-- 3. Matter -->
       <section>
-        <h2>3. Matter as Topological Solitons</h2>
+        <h2>Matter as Topological Solitons</h2>
         <p>
-          In a universe of continuous fluid, "solid" particles cannot exist as
-          hard pellets. In DHCM, matter is a
-          <strong>Topological Soliton</strong>.
+          In a universe made of a continuous fluid-like medium, what are "solid"
+          objects?
         </p>
         <p>
-          Consider a smoke ring. It is a distinct, stable entity, yet it is
-          composed entirely of the air it moves through. It is a knot of motion.
-          Similarly, an electron or a quark is a knot in the Holostrome.
+          In DHCM, particles like electrons or quarks are
+          <strong>Topological Solitons</strong>. They are "knots" in the flow.
+          Just as a smoke ring is a distinct object made entirely of moving air,
+          a particle is a stable loop of the Holostrome.
+        </p>
+
+        <p>
+          These knots form because the Non-Causal Potential traps the Stochastic
+          Flux into a self-reinforcing cycle.
         </p>
 
         <div class="card">
           <ul>
             <li>
-              <strong>Formation:</strong> These knots form when the Fractal
-              Potential traps the Stochastic Flux into a self-reinforcing loop.
+              <strong>Mass</strong> is not a static property assigned to the
+              particle; Mass is the <strong>resistance</strong> the soliton
+              feels as it pushes through the fractal background. A heavier
+              particle is simply a more complex knot that creates more drag
+              against the infinite noise of the vacuum.
             </li>
             <li>
-              <strong>Mass:</strong> Mass is not an intrinsic property of the
-              object. It is the <strong>drag coefficient</strong>—the resistance
-              the soliton feels as it pushes through the fractal noise of the
-              background field.
+              Gravity is not just curvature; it is a gradient in the density of
+              the vacuum noise itself.
             </li>
           </ul>
         </div>
@@ -597,56 +497,82 @@
 
       <!-- 4. Biology -->
       <section>
-        <h2>4. The Biological Resonance</h2>
+        <h2>The Macroscopic Continuum: A Biological Proof</h2>
         <p>
-          While DHCM is a cosmological theory, it necessitates a specific view
-          of biological complexity. If the universe is a continuous field, then
-          the phenomenon of "unity" in consciousness cannot arise from discrete,
-          digital switching (neurons). Digital systems are inherently listable
-          and separable; they cannot solve the Binding Problem.
+          While DHCM is a cosmological theory, its most tangible proof may lie
+          in biology. If the universe is a continuous field, why do we
+          experience a unified consciousness?
         </p>
         <p>
-          Biology solved this by evolving the
-          <strong>Astroglial Syncytium</strong>. By fusing glial cells into a
-          continuous, liquid dielectric medium, the brain creates a
-          <strong>Macroscopic Infinitesimal</strong>. This is a shielded cavity
-          where the biological field can mimic the physical continuity of the
-          Holostrome.
+          Digital systems—like neurons or computers—are discrete. They are
+          collections of separate switches. A collection of switches cannot
+          mimic a continuum; it faces the "Binding Problem" (how do separate
+          signals become one image?).
+        </p>
+        <p>
+          Biology solved this by evolving a structure that mirrors the physics
+          of the Holostrome: the <strong>Astroglial Syncytium</strong>. In the
+          brain, glial cells (astrocytes) fuse together via gap junctions to
+          create a single, continuous, fluid-filled network. This creates a
+          <strong>Macroscopic Infinitesimal</strong>—a protected region of space
+          where the ionic field is "isoelectric" (uniform in potential).
         </p>
 
-        <h3>The Mechanics of Feeling</h3>
         <p>
-          "Pain" and "Pleasure" are the direct perception of field mechanics:
+          In this view, consciousness is not "data processing." It is the
+          <strong>Intrinsic Tension</strong> of the Holostrome itself.
         </p>
+
         <ul>
           <li>
-            <strong>Pain</strong> is
-            <strong>Field Turbulence</strong> (Decoherence). A high-entropy,
-            metabolically expensive state where the field is tearing.
+            <strong>Laminar Coherence:</strong> When the field flows smoothly
+            with low impedance, it forms a stable attractor state. This physical
+            "ease" of flow is felt as pleasure or consonance.
           </li>
           <li>
-            <strong>Pleasure</strong> is
-            <strong>Laminar Flow</strong> (Coherence). A low-entropy, resonant
-            state.
+            <strong>Turbulent Dissonance:</strong> When the field integrity is
+            disrupted (e.g., by injury signals), the wave structure creates
+            chaotic interference patterns. This high-entropy state is felt as
+            pain.
           </li>
         </ul>
+
         <p>
-          Evolution drives organisms toward coherence not via algorithmic rules,
-          but via the <strong>Principle of Least Action</strong>. The organism
-          minimizes metabolic cost by minimizing field turbulence.
+          Evolution utilized this physics efficiently. A turbulent field is
+          metabolically expensive (it costs massive amounts of energy to
+          maintain ion gradients in a chaotic field). Therefore, the organism is
+          driven to minimize turbulence not by an algorithm, but by the physical
+          imperative of the <strong>Law of Least Action</strong>. The "ghost"
+          (the field dynamics) drives the "machine" (the body) simply by seeking
+          the lowest energy state.
         </p>
       </section>
 
+      <!-- Conclusion -->
       <section>
-        <h2>Summary</h2>
+        <h2>Conclusion</h2>
         <p>
-          <strong>Dynamic Hyper-Continuum Mechanics</strong> asserts that we do
-          not live in a pixelated simulation. We inhabit a rigorous, infinite
-          continuum. The order we see—from the orbit of planets to the stability
-          of atoms—is the result of the Dyadic Computation, where the infinite
-          non-causal potential guides the chaotic flux into the coherent stream
-          of reality.
+          <strong>Dynamic Hyper-Continuum Mechanics</strong> offers a view of
+          reality that embraces the infinite rather than fearing it. It posits
+          that:
         </p>
+        <ol>
+          <li>
+            <strong>Continuity is Fundamental:</strong> There is no Planck
+            scale; the universe is infinite all the way down.
+          </li>
+          <li>
+            <strong>Causality is Emergent:</strong> The arrow of time is a
+            statistical result of an underlying non-causal, stochastic
+            interaction.
+          </li>
+          <li>
+            <strong>Connection is Absolute:</strong> We are not isolated
+            observers; we are localized, coherent waveforms—solitons—surfing the
+            infinite, living flux of the Holostrome.
+          </li>
+        </ol>
+
         <div
           style="
             text-align: center;
@@ -657,8 +583,8 @@
             color: var(--text-primary);
           "
         >
-          We do not have to kill infinity to understand the universe;<br />we
-          must simply learn the geometry of its flow.
+          We do not have to "kill" infinity to understand the universe.<br />
+          We must simply learn the mathematics of its flow.
         </div>
       </section>
 
